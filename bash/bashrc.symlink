@@ -1,0 +1,46 @@
+shopt -s extglob
+
+# shortcut to this dotfiles path is $BASH
+export BASH=$HOME/.dotfiles
+
+# your project folder that we can `c [tab]` to
+export PROJECTS=~/Code
+
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# load the path files
+for file in $(find . -name "*path*bash")
+do
+  # echo $file
+  source $file
+done
+
+# # load everything but the path and completion files
+for file in $(find . -name "*.bash" -not -name "*path*" -not -name "*completion*")
+do
+  # echo $file
+  source $file
+done
+
+for file in $(find . -name "*completion*bash")
+do
+  # echo $file
+  source $file
+done
+
+# # initialize autocomplete here, otherwise functions won't be loaded
+# autoload -U compinit
+# compinit
+
+# # load every completion after autocomplete loads
+# for file in ${(M)config_files:#*/completion.zsh}
+# do
+#   source $file
+# done
+
+# unset config_files

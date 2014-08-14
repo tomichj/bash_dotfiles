@@ -5,3 +5,8 @@ atom.symlink/storage
 atom.symlink/themes
 
 git/gitconfig.symlink
+
+.svn
+.DS_Store
+*~
+

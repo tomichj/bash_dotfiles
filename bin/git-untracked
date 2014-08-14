@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Show the diffstat of everything you haven't pushed yet.
+
+git ls-files --other --exclude-standard

@@ -14,3 +14,5 @@ brew update
 
 # Install homebrew packages
 $ZSH/homebrew/install.sh 2>&1
+
+
