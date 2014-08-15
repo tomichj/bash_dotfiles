@@ -6,6 +6,47 @@ export BASH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
 
+path_files=$(find $BASH -name "platforms" -type d -prune -o -name "*path*bash" -print)
+bash_files=$(find $BASH -name "platforms" -type d -prune -o -name "*.bash" -not -name "*path*" -not -name "*completion*" -print)
+completion_files=$(find $BASH -name "platforms" -type d -prune -o -name "*completion*.bash" -print)
+
+# load the path files
+for file in $path_files
+do
+  . $file
+done
+
+# # load everything but the path and completion files
+for file in $bash_files
+do
+  . $file
+done
+
+# load the completion filews
+for file in $completion_files
+do
+  . $file
+done
+
+# load functions, but not ones starting with _
+for file in $(find $BASH/functions -name "_*" -prune -o -type f -print)
+do
+  . $file
+done
+
+# load platform-specific files
+platform=$(uname -s)
+for file in $(find $BASH/platform/$platform -name "*.bash")
+do
+  . $file
+done
+
+# I should generalize this
+if [ "$platform" = "Darwin" ]
+then
+  $BASH/platform/Darwin/set-defaults.sh
+fi
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
@@ -13,34 +54,3 @@ then
   source ~/.localrc
 fi
 
-# load the path files
-for file in $(find . -name "*path*bash")
-do
-  # echo $file
-  source $file
-done
-
-# # load everything but the path and completion files
-for file in $(find . -name "*.bash" -not -name "*path*" -not -name "*completion*")
-do
-  # echo $file
-  source $file
-done
-
-for file in $(find . -name "*completion*bash")
-do
-  # echo $file
-  source $file
-done
-
-# # initialize autocomplete here, otherwise functions won't be loaded
-# autoload -U compinit
-# compinit
-
-# # load every completion after autocomplete loads
-# for file in ${(M)config_files:#*/completion.zsh}
-# do
-#   source $file
-# done
-
-# unset config_files
