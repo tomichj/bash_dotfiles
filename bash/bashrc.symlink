@@ -1,47 +1,34 @@
+# This is the top-level master bash file that actually does stuff
+
 shopt -s extglob
+
+sourceFiles() {
+  for file in $@
+  do
+    . $file
+  done
+}
 
 # shortcut to this dotfiles path is $BASH
 export BASH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=~/Projects
 
+platform=$(uname -s)
 path_files=$(find $BASH -name "platforms" -type d -prune -o -name "*path*bash" -print)
 bash_files=$(find $BASH -name "platforms" -type d -prune -o -name "*.bash" -not -name "*path*" -not -name "*completion*" -print)
 completion_files=$(find $BASH -name "platforms" -type d -prune -o -name "*completion*.bash" -print)
+function_files=$(find $BASH/functions -name "_*" -prune -o -type f -print)
+platform_specific_files=$(find $BASH/platform/$platform -name "*.bash")
 
-# load the path files
-for file in $path_files
-do
-  . $file
-done
+sourceFiles $path_files
+sourceFiles $bash_files
+sourceFiles $completion_files
+sourceFiles $function_files # load functions, but not ones starting with _
+sourceFiles $platform_specific_files # load platform-specific files
 
-# # load everything but the path and completion files
-for file in $bash_files
-do
-  . $file
-done
-
-# load the completion filews
-for file in $completion_files
-do
-  . $file
-done
-
-# load functions, but not ones starting with _
-for file in $(find $BASH/functions -name "_*" -prune -o -type f -print)
-do
-  . $file
-done
-
-# load platform-specific files
-platform=$(uname -s)
-for file in $(find $BASH/platform/$platform -name "*.bash")
-do
-  . $file
-done
-
-# I should generalize this
+# TODO: generalize this
 if [ "$platform" = "Darwin" ]
 then
   $BASH/platform/Darwin/set-defaults.sh
