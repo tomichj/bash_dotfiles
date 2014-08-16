@@ -5,7 +5,7 @@ shopt -s extglob
 sourceFiles() {
   for file in $@
   do
-    source $file
+    . $file
   done
 }
 
@@ -20,13 +20,16 @@ path_files=$(find $BASH -name "platforms" -type d -prune -o -name "*path*bash" -
 bash_files=$(find $BASH -name "platforms" -type d -prune -o -name "*.bash" -not -name "*path*" -not -name "*completion*" -print)
 completion_files=$(find $BASH -name "platforms" -type d -prune -o -name "*completion*.bash" -print)
 function_files=$(find $BASH/functions -name "_*" -prune -o -type f -print)
-platform_specific_files=$(find $BASH/platform/$platform -name "*.bash")
 
 sourceFiles $path_files
 sourceFiles $bash_files
 sourceFiles $completion_files
 sourceFiles $function_files # load functions, but not ones starting with _
-sourceFiles $platform_specific_files # load platform-specific files
+
+if [ -d "$BASH/platform/$platform" ]; then
+  platform_specific_files=$(find $BASH/platform/$platform -name "*.bash")
+  sourceFiles $platform_specific_files # load platform-specific files
+fi
 
 # TODO: generalize this
 if [ "$platform" = "Darwin" ]
@@ -38,6 +41,6 @@ fi
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
 then
-  source ~/.localrc
+  . ~/.localrc
 fi
 
