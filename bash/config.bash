@@ -58,3 +58,10 @@ export PAGER=less
 # export HISTFILE="$HOME/.bash.history"
 umask 027
 set -o emacs
+
+
+# ---------------- local alias file ------------------
+alias add-alias='cat >> ~/.alias.local; source ~/.alias.local'
+if [ -f ~/.alias.local ]; then
+  source ~/.alias.local
+fi

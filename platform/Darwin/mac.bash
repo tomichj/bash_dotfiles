@@ -1,4 +1,3 @@
-
 alias ls='ls -CFG'
 alias ps-ssh='ps auxwww | grep "ssh -C" | grep -v grep'
 alias ps-ssh-pids='ps-ssh | cut -b 8-15'
@@ -13,10 +12,7 @@ alias netuse='lsof -r -i TCP -i UDP'
 
 # set locale to fix some textmate bundle craziness
 export LC_CTYPE=en_US.UTF-8
-
-export POSTGRES_BIN=/Applications/Postgres.app/Contents/Versions/9.3/bin
-export PATH=$POSTGRES_BIN:${PATH}
-export PATH="/usr/local/heroku/bin:$PATH"
+export FIGNORE=.DS_Store
 export MANPATH=/usr/local/share/man:${MANPATH}
 
 alias ios="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"

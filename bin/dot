@@ -4,15 +4,20 @@
 #
 # `dot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
-export ZSH=$HOME/.dotfiles
+export BASH=$HOME/.dotfiles
 
-# Set OS X defaults
-$ZSH/osx/set-defaults.sh
+if [ "$(uname -s)" = "Darwin" ]
+then
+  $BASH/platform/Darwin/set-defaults.sh
 
-# Upgrade homebrew
-brew update
+  # Upgrade homebrew
+  brew update
 
-# Install homebrew packages
-$ZSH/homebrew/install.sh 2>&1
+  # Install homebrew packages
+  $ZSH/homebrew/install.sh 2>&1
+fi
+
+
+
 
 
