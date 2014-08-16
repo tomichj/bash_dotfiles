@@ -28,7 +28,8 @@ complete -cf sudo
 set -o noclobber
 
 # Treat undefined variables as errors
-set -o nounset
+# THIS BREAKS GIT COMPLETION!
+#set -o nounset
 
 # Don't clear the screen after quitting a manual page
 export MANPAGER="less -X"

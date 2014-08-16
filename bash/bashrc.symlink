@@ -5,7 +5,7 @@ shopt -s extglob
 sourceFiles() {
   for file in $@
   do
-    . $file
+    source $file
   done
 }
 
