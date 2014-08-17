@@ -1,13 +1,7 @@
 # This is the top-level master bash file that actually does stuff
 
+# enable bash extended globbing
 shopt -s extglob
-
-sourceFiles() {
-  for file in $@
-  do
-    . $file
-  done
-}
 
 # shortcut to this dotfiles path is $BASH
 export BASH=$HOME/.dotfiles
@@ -16,24 +10,35 @@ export BASH=$HOME/.dotfiles
 export PROJECTS=~/Projects
 
 platform=$(uname -s)
-path_files=$(find $BASH -name "platforms" -type d -prune -o -name "*path*bash" -print)
-bash_files=$(find $BASH -name "platforms" -type d -prune -o -name "*.bash" -not -name "*path*" -not -name "*completion*" -print)
-completion_files=$(find $BASH -name "platforms" -type d -prune -o -name "*completion*.bash" -print)
-function_files=$(find $BASH/functions -name "_*" -prune -o -type f -print)
 
-sourceFiles $path_files
-sourceFiles $bash_files
-sourceFiles $completion_files
-sourceFiles $function_files # load functions, but not ones starting with _
+# source path files first (excepting platform/ files)
+for file in $BASH/!(platform)*/*path*bash; do
+  . $file
+done
 
-if [ -d "$BASH/platform/$platform" ]; then
-  platform_specific_files=$(find $BASH/platform/$platform -name "*.bash")
-  sourceFiles $platform_specific_files # load platform-specific files
-fi
+# source bash files that aren't completion or path files
+for file in $BASH/!(platform)/!(*completion*|*path*)**bash; do
+  . $file
+done
+
+# source completion files
+for file in $BASH/!(platform)/**completion*bash; do
+  . $file
+done
+
+# source functions
+for file in $BASH/functions/!(_*); do
+  . $file
+done
+
+# platform-specific files
+for file in $BASH/platform/$platform/**.bash; do
+  . $file
+done
+
 
 # TODO: generalize this
-if [ "$platform" = "Darwin" ]
-then
+if [ "$platform" = "Darwin" ]; then
   $BASH/platform/Darwin/set-defaults.sh
 fi
 
