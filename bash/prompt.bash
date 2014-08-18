@@ -33,9 +33,8 @@ NC='\[\033[01m\]'
 
 
 ###########################################################
-# Default prompt. Ug.
-export PS1='\[\033]0;\h\007\][\@] \h:\w% '
-
+# Default prompt. No git info
+export PS1=$green'\u'$nc'@'$cyan'\h'$nc':'$magenta'\w'$nc'% '
 
 #-----------------------------------
 # GIT PROMPT
