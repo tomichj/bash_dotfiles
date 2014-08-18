@@ -45,10 +45,6 @@ PROMPT_COMMAND='history -a'
 #     debian_chroot=$(cat /etc/debian_chroot)
 # fi
 
-# Locale
-export LC_ALL=en_US.UTF-8  
-export LANG=en_US.UTF-8
-
 export CLICOLOR=true
 
 complete -cf sudo # Tab complete for sudo

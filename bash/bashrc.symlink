@@ -32,10 +32,11 @@ for file in $BASH/functions/!(_*); do
 done
 
 # platform-specific files
-for file in $BASH/platform/$platform/**.bash; do
-  . $file
-done
-
+if [ -d $BASH/platform/$platform ]; then
+  for file in $BASH/platform/$platform/**.bash; do
+    . $file
+  done
+fi
 
 # TODO: generalize this
 if [ "$platform" = "Darwin" ]; then
