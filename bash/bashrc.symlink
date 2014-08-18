@@ -9,6 +9,7 @@ export BASH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
 
+# Platform name: Darwin, SunOS, Linux...
 platform=$(uname -s)
 
 # source path files first (excepting platform/ files)
@@ -45,8 +46,7 @@ fi
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
-then
+if [[ -a ~/.localrc ]]; then
   . ~/.localrc
 fi
 
