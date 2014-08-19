@@ -27,16 +27,11 @@ for file in $BASH/!(platform)/**completion*bash; do
   . $file
 done
 
-# platform-specific files
+# source platform-specific files
 if [ -d $BASH/platform/$platform ]; then
   for file in $BASH/platform/$platform/**.bash; do
     . $file
   done
-fi
-
-# TODO: generalize this
-if [ "$platform" = "Darwin" ]; then
-  $BASH/platform/Darwin/set-defaults.sh
 fi
 
 # use .localrc for SUPER SECRET CRAP that you don't

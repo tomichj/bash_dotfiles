@@ -1,0 +1,49 @@
+#!/bin/bash
+
+##
+## My system setup script.
+##
+## Begins by installing xcode command-line tools.
+## Installs homebrew and homebrew cask, uses them to install a lot of applications.
+## Installs rbenv and ruby-builld, and a 1.9.x ruby and a 2.1.x ruby.
+## Installs tomichj/dotfiles.
+##
+
+# consider checking for FDE instead of just enabling it.
+#
+# sudo fdesetup enable
+
+xcode-select --install
+
+if test ! $(which brew)
+then
+  echo "  Installing Homebrew for you."
+  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" > /tmp/homebrew-install.log
+fi
+ 
+# brew packages
+brew install openssl libyaml gnutls git rbenv ruby-build tree blueutil gmp imagemagick wget coreutils hub z grc spark
+brew link --force openssl
+ 
+# now install two ruby versions required
+rbenv install 2.1.2
+rbenv global 2.1.2
+gem install bundler
+rbenv install 1.9.3-p547     # gem install bundler from ~/Projects/progress
+ 
+# install homebrew cask
+brew update
+brew tap phinze/homebrew-cask
+brew install brew-cask
+ 
+# install applications using brew cask
+brew cask install caffeine dropbox the-unarchiver vlc skype transmission github boot2docker fantastical firefox handbrake istat-menus keyboard-maestro minecraft rubymine sourcetree steam sublime-text superduper textexpander viscosity diffmerge textmate silverlight bbedit quicksilver heroku-toolbelt skitch evernote postgres
+brew cask install --appdir="/Applications" google-chrome
+ 
+# dot files!
+if [[ ! -d ~/.dotfiles ]]; then
+  git clone https://github.com/tomichj/dotfiles
+fi
+
+
+
