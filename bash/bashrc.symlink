@@ -27,11 +27,6 @@ for file in $BASH/!(platform)/**completion*bash; do
   . $file
 done
 
-# source functions
-for file in $BASH/functions/!(_*); do
-  . $file
-done
-
 # platform-specific files
 if [ -d $BASH/platform/$platform ]; then
   for file in $BASH/platform/$platform/**.bash; do

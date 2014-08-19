@@ -31,6 +31,19 @@ tman () {
   MANWIDTH=160 MANPAGER='col -bx' man $@ | mate
 }
 
+
+# position dock to the right
+dock-right() {
+  if [ $(uname) = "Darwin" ]; then
+    defaults write com.apple.dock orientation right
+    killall Dock
+  fi
+}
+
+tcpd() {
+  sudo tcpdump -s 0 -A -i lo0 "tcp port $1 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)"
+}
+
 # if test $(which brew); then
 #   [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
 # fi
