@@ -26,10 +26,13 @@ brew install openssl libyaml gnutls git rbenv ruby-build tree blueutil gmp image
 brew link --force openssl
  
 # now install two ruby versions required
-rbenv install 2.1.2
+rbenv install -s 1.9.3-p547     # gem install bundler from ~/Projects/progress
+rbenv global 1.9.3-p547
+gem install bundler
+
+rbenv install -s 2.1.2
 rbenv global 2.1.2
 gem install bundler
-rbenv install 1.9.3-p547     # gem install bundler from ~/Projects/progress
  
 # install homebrew cask
 brew update

@@ -46,9 +46,6 @@ PROMPT_COMMAND='history -a'
 # fi
 
 export CLICOLOR=true
-
-complete -cf sudo # Tab complete for sudo
-
 export VISUAL=emacs
 export EDITOR=emacs
 export PAGER=less

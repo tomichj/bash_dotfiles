@@ -1,13 +1,10 @@
-dotfiles
-========
-
-bash dotfiles
-=======
-# tomich does bash dotfiles, forked from holman's zsh dotfiles
+# tomich does bash dotfiles
 
 ## dotfiles
 
-Your dotfiles are how you personalize your system. These are mine.
+Your dotfiles are how you personalize your system. These are mine, forked from holman's
+zsh dotfiles. zsh is the better shell, but I'm stuck with bash for corporate reasons. If you must use
+bash, start here.
 
 ## install
 
@@ -22,7 +19,7 @@ script/bootstrap
 This will symlink the appropriate files in `.dotfiles` to your home directory.
 Everything is configured and tweaked within `~/.dotfiles`.
 
-The main file you'll want to change right off the bat is `zsh/zshrc.symlink`,
+The main file you'll want to change right off the bat is `bash/bashrc.symlink`,
 which sets up a few paths that'll be different on your particular machine.
 
 `dot` is a simple script that installs some dependencies, sets sane OS X
@@ -30,13 +27,37 @@ defaults, and so on. Tweak this script, and occasionally run `dot` from
 time to time to keep your environment fresh and up-to-date. You can find
 this script in `bin/`.
 
+## image a fresh mac os x machine 
+
+The 'install' script can be used to set up a fresh system. Unfortunately it cannot install
+applications from the App Store, do that manually. You can run 'install' from
+a fresh machine by executing:
+
+```sh
+curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install | bash /dev/stdin
+```
+
+'install' will install the following (abbreviated, see script for full list):
+- Apple Command Line Tools
+- homebrew
+- homebrew cask
+- many open source tools, like coreutils, git, etc
+- many packaged open source and commercial apps and tools, like Dropbox, Rubymine, Bbedit, Chrome, VLC, etc
+
+
 ## topical
 
 Everything's built around topic areas. If you're adding a new area to your
 forked dotfiles — say, "Java" — you can simply add a `java` directory and put
-files in there. Anything with an extension of `.zsh` will get automatically
+files in there. Anything with an extension of `.bash` will get automatically
 included into your shell. Anything with an extension of `.symlink` will get
 symlinked without extension into `$HOME` when you run `script/bootstrap`.
+
+## platform
+
+Files included in platform/ will only be sourced if on the apropriate platform.
+Platform is determined using 'uname -s'. Currently configuration is only provided
+for Darwin (MacOS X), but Linux and SunOS support may be added in the near future.
 
 ## what's inside
 
@@ -51,12 +72,13 @@ There's a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
+- **topic/path.bash**: Any file named `path.bash` is loaded first and is
+  expected to setup `$PATH` or similar.
 - **topic/\*.bash**: Any files ending in `.bash` get loaded into your
   environment.
-- **topic/path.bash**: Any file named `path.zsh` is loaded first and is
-  expected to setup `$PATH` or similar.
 - **topic/completion.bash**: Any file named `completion.bash` is loaded
   last and is expected to setup autocomplete.
+- platform/Darwin/**bash: if on a Mac, these files are loaded.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
@@ -75,9 +97,8 @@ and I'd love to get it fixed for you!
 
 ## thanks
 
-I forked [Holman's](http://github.com/ryanb)' excellent
-[dotfiles](http://github.com/ryanb/dotfiles), which are forked from 
-[Ryan Bates](http://github.com/ryanb)' excellent 
-[dotfiles](http://github.com/ryanb/dotfiles). I also appropriated some
+I forked [Holman's](http://github.com/holman)' excellent
+[dotfiles](http://github.com/holman/dotfiles). I also appropriated some
 functions from [bash-it](https://github.com/revans/bash-it), another excellent
 source of bash configuration ideas.
+
