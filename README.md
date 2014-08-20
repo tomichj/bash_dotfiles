@@ -27,24 +27,6 @@ defaults, and so on. Tweak this script, and occasionally run `dot` from
 time to time to keep your environment fresh and up-to-date. You can find
 this script in `bin/`.
 
-## image a fresh mac os x machine 
-
-The 'install' script can be used to set up a fresh system. Unfortunately it cannot install
-applications from the App Store, do that manually. You can run 'install' from
-a fresh machine by executing:
-
-```sh
-curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install | bash /dev/stdin
-```
-
-'install' will install the following (abbreviated, see script for full list):
-- Apple Command Line Tools
-- homebrew
-- homebrew cask
-- many open source tools, like coreutils, git, etc
-- many packaged open source and commercial apps and tools, like Dropbox, Rubymine, Bbedit, Chrome, VLC, etc
-
-
 ## topical
 
 Everything's built around topic areas. If you're adding a new area to your
@@ -57,7 +39,7 @@ symlinked without extension into `$HOME` when you run `script/bootstrap`.
 
 Files included in platform/ will only be sourced if on the apropriate platform.
 Platform is determined using 'uname -s'. Currently configuration is only provided
-for Darwin (MacOS X), but Linux and SunOS support may be added in the near future.
+for Darwin/Mac OS X, but Linux and SunOS support may be added in the near future.
 
 ## what's inside
 
@@ -78,11 +60,28 @@ There's a few special files in the hierarchy.
   environment.
 - **topic/completion.bash**: Any file named `completion.bash` is loaded
   last and is expected to setup autocomplete.
-- platform/Darwin/**bash: if on a Mac, these files are loaded.
+- **platform/Darwin/**bash**: if on a Mac, these files are loaded.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
+
+## image a fresh mac os x machine 
+
+The 'install' script can be used to set up a fresh system. Unfortunately it cannot install
+applications from the App Store, do that manually. You can run 'install' from
+a fresh machine by executing:
+
+```sh
+curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install | bash /dev/stdin
+```
+
+'install' will install the following (abbreviated, see script for full list):
+- Apple Command Line Tools
+- homebrew
+- homebrew cask
+- many open source tools, like coreutils, git, etc
+- many packaged open source and commercial apps and tools, like Dropbox, Rubymine, Bbedit, Chrome, VLC, etc
 
 ## bugs
 

@@ -7,12 +7,15 @@
 # consider checking for FDE instead of just enabling it.
 # sudo fdesetup enable
 
-echo "Installing all AppStore Apps at first"
+echo "Install all AppStore apps first"
 read -p "Press any key to continue... " -n1 -s
 echo  '\n'
 
-echo "Install Apple Command Line Tools if you haven't already"
-xcode-select --install
+echo "Checking to see if Apple Command Line Tools is installed. Will prompt for installation if not."
+xcode-select -p
+if [[ $? -ne 0 ]]; then
+  xcode-select --install
+fi
 
 echo Installing Homebrew
 if test ! $(which brew)
@@ -66,6 +69,21 @@ brew cask install textmate bbedit sublime-text atom
 
 echo "Installing development tools"
 brew cask install github boot2docker fantastical rubymine sourcetree steamdiffmerge heroku-toolbelt postgres
+
+echo "Installing quicklook plugins"
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook 
+qlmanage -r
+
+echo "Installing homebrew-fonts"
+brew tap caskroom/fonts
+brew cask install font-inconsolata
+brew cask install font-source-code-pro
+
+echo "Cleaning up homebrew caches, etc"
+brew linkapps
+brew cleanup
+brew prune
+brew cask cleanup
 
 # dot files!
 if [[ ! -d ~/.dotfiles ]]; then
