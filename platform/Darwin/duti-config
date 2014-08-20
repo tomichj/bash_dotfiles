@@ -1,0 +1,31 @@
+# Set Chrome as the default handler for HTML files,
+# set TextEdit as the default handler for files with .patch extensions,
+# and set Firefox as the default handler for feed:// URLs.
+#
+# blank lines and lines beginning with a '#' are ignored
+
+
+######################################################
+# bundle id   UTI/ext/MIME type role
+
+com.google.Chrome  public.html   all
+
+com.sublimetext.2  .patch       editor
+com.sublimetext.2  .txt         editor
+com.sublimetext.2  .rb          editor
+com.sublimetext.2  .md          editor
+com.sublimetext.2  .yaml        editor
+com.sublimetext.2  .bash        editor
+com.sublimetext.2  .zsh         editor
+com.sublimetext.2  .sh          editor
+com.sublimetext.2  .symlink     editor
+
+org.videolan.vlc   .mkv         viewer
+org.videolan.vlc   .m4v         viewer
+org.videolan.vlc   .mp4         viewer
+org.videolan.vlc   .avi         viewer
+
+
+######################################################
+# bundle id   URL scheme
+com.webinhq.ReadKit feed

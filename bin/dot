@@ -8,8 +8,17 @@ export BASH=$HOME/.dotfiles
 
 if [ "$(uname -s)" = "Darwin" ]
 then
+  echo "Setting platform defaults"
   $BASH/platform/Darwin/set-defaults.sh
 
-  # Upgrade homebrew
-  #brew update
+  # You get the default config at platform/Darwin/duti-config.
+  # Provide additional mappings, or override base settings, with ~/.duti
+  if test $(which duti); then
+    echo "Setting application handlers"
+    duti $BASH/platform/Darwin/duti-config
+    if [ -f $HOME/.duti ]; then
+      duti $BASH/.duti
+    fi
+  fi
+
 fi
