@@ -59,16 +59,17 @@ brew update
 brew tap caskroom/cask/brew-cask
 brew install brew-cask
 
-echo "Installing core apps"
-brew cask install caffeine dropbox the-unarchiver vlc skype transmission silverlight quicksilver skitch evernote
-brew cask install firefox handbrake istat-menus keyboard-maestro minecraft superduper textexpander viscosity
+echo "Installing core apps and utilities"
+brew cask install caffeine dropbox the-unarchiver skype transmission quicksilver skitch evernote firefox
+brew cask install istat-menus keyboard-maestro superduper textexpander viscosity minecraft fantastical 
+brew cask install vlc silverlight handbrake mplayerx
 brew cask install --appdir="/Applications" google-chrome
 
 echo "Installing editors"
 brew cask install textmate bbedit sublime-text atom
 
 echo "Installing development tools"
-brew cask install github boot2docker fantastical rubymine sourcetree steamdiffmerge heroku-toolbelt postgres
+brew cask install github boot2docker rubymine sourcetree steam diffmerge heroku-toolbelt postgres
 
 echo "Installing quicklook plugins"
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook 
