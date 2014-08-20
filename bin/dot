@@ -11,9 +11,5 @@ then
   $BASH/platform/Darwin/set-defaults.sh
 
   # Upgrade homebrew
-  brew update
-
-  # Install homebrew packages
-  #$HOME/homebrew/install.sh 2>&1
+  #brew update
 fi
-

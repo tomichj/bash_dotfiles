@@ -3,50 +3,74 @@
 ##
 ## My system setup script.
 ##
-## Begins by installing xcode command-line tools.
-## Installs homebrew and homebrew cask, uses them to install a lot of applications.
-## Installs rbenv and ruby-builld, and a 1.9.x ruby and a 2.1.x ruby.
-## Installs tomichj/dotfiles.
-##
 
 # consider checking for FDE instead of just enabling it.
-#
 # sudo fdesetup enable
 
+echo "Installing all AppStore Apps at first"
+read -p "Press any key to continue... " -n1 -s
+echo  '\n'
+
+echo "Install Apple Command Line Tools if you haven't already"
 xcode-select --install
 
+echo Installing Homebrew
 if test ! $(which brew)
 then
   echo "  Installing Homebrew for you."
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" > /tmp/homebrew-install.log
 fi
- 
+
 # brew packages
-brew install openssl libyaml gnutls git rbenv ruby-build tree blueutil gmp imagemagick wget coreutils hub z grc spark
+echo "Intalling open source packages view brew, including wget, openssl, rbenv, ruby-build, etc"
+brew install openssl libyaml gnutls git tree blueutil gmp imagemagick wget coreutils hub z grc spark
 brew link --force openssl
- 
+
+echo "Installing rbenv"
+if test ! $(which rbenv)
+then
+  echo "  Installing rbenv"
+  brew install rbenv > /tmp/rbenv-install.log
+fi
+
+echo "Installing ruby-build"
+if test ! $(which ruby-build)
+then
+  echo "  Installing ruby-build"
+  brew install ruby-build > /tmp/ruby-build-install.log
+fi
+
 # now install two ruby versions required
+echo "Installing ruby 1.9.3"
 rbenv install -s 1.9.3-p547     # gem install bundler from ~/Projects/progress
 rbenv global 1.9.3-p547
 gem install bundler
 
+echo "Installing ruby 2.1.2"
 rbenv install -s 2.1.2
 rbenv global 2.1.2
 gem install bundler
- 
-# install homebrew cask
+
+echo "Installing homebrew cask"
 brew update
-brew tap phinze/homebrew-cask
+brew tap caskroom/cask/brew-cask
 brew install brew-cask
- 
-# install applications using brew cask
-brew cask install caffeine dropbox the-unarchiver vlc skype transmission github boot2docker fantastical firefox handbrake istat-menus keyboard-maestro minecraft rubymine sourcetree steam sublime-text superduper textexpander viscosity diffmerge textmate silverlight bbedit quicksilver heroku-toolbelt skitch evernote postgres
+
+echo "Installing core apps"
+brew cask install caffeine dropbox the-unarchiver vlc skype transmission silverlight quicksilver skitch evernote
+brew cask install firefox handbrake istat-menus keyboard-maestro minecraft superduper textexpander viscosity
 brew cask install --appdir="/Applications" google-chrome
- 
+
+echo "Installing editors"
+brew cask install textmate bbedit sublime-text atom
+
+echo "Installing development tools"
+brew cask install github boot2docker fantastical rubymine sourcetree steamdiffmerge heroku-toolbelt postgres
+
 # dot files!
 if [[ ! -d ~/.dotfiles ]]; then
-  git clone https://github.com/tomichj/dotfiles
+  echo Installing tomichj/dotfiles
+  git clone https://github.com/tomichj/dotfiles .dotfiles
+  ~/.dotfiles/script/bootstrap
+  ~/.dotfiles/bin/dot
 fi
-
-
-

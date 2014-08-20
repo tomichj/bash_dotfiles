@@ -1,10 +1,10 @@
 ##
-## switch directories to a project. tab-completion works.
+## Change directories to a ~/Projects/ directory. Tab-completion of Projects/ works.
 ##
+
 function p() {
   cd $PROJECTS/"$1";
 }
-
 
 function _p() {
   local cur=${COMP_WORDS[COMP_CWORD]}
@@ -12,4 +12,3 @@ function _p() {
 }
 
 complete -F _p p
-

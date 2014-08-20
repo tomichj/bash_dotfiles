@@ -11,7 +11,7 @@ alias tcpd8081="sudo tcpdump -s 0 -A -i lo0 'tcp port 8081 and (((ip[2:2] - ((ip
 alias netuse='lsof -r -i TCP -i UDP'
 
 # set locale to fix some textmate bundle craziness
-#export LC_ALL=en_US.UTF-8  
+#export LC_ALL=en_US.UTF-8
 #export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export FIGNORE=.DS_Store
@@ -43,8 +43,3 @@ dock-right() {
 tcpd() {
   sudo tcpdump -s 0 -A -i lo0 "tcp port $1 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)"
 }
-
-# if test $(which brew); then
-#   [ -f `brew --prefix`/etc/profile.d/z.sh ] && . `brew --prefix`/etc/profile.d/z.sh
-# fi
-
