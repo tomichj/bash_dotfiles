@@ -67,6 +67,11 @@ brew cask install textmate bbedit sublime-text atom
 echo "Installing development tools"
 brew cask install github boot2docker fantastical rubymine sourcetree steamdiffmerge heroku-toolbelt postgres
 
+echo "Installing homebrew-fonts"
+brew tap caskroom/fonts
+brew cask install font-inconsolata
+brew cask install font-source-code-pro
+
 # dot files!
 if [[ ! -d ~/.dotfiles ]]; then
   echo Installing tomichj/dotfiles
