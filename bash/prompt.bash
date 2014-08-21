@@ -40,7 +40,7 @@ export PS1=$green'\u'$nc'@'$cyan'\h'$nc':'$magenta'\w'$nc'% '
 # GIT PROMPT
 #-----------------------------------
 
-if type git > /dev/null 2>&1; then
+if hash git 2>/dev/null; then
   export PS1=$green'\u'$nc'@'$cyan'\h'$nc':'$magenta'\w'$NC$YELLOW'`git branch 2>/dev/null|cut -f2 -d\* -s`'$nc'% '
 fi
 

@@ -7,6 +7,7 @@
 # consider checking for FDE instead of just enabling it.
 # sudo fdesetup enable
 
+echo "Justin's Mac OS X Installation Script"
 echo "Install all AppStore apps first"
 read -p "Press any key to continue... " -n1 -s
 echo  '\n'
@@ -17,10 +18,9 @@ if [[ $? -ne 0 ]]; then
   xcode-select --install
 fi
 
-echo Installing Homebrew
-if test ! $(which brew)
-then
-  echo "  Installing Homebrew for you."
+echo Checking Homebrew
+if ! hash brew 2>/dev/null; then
+  echo "  Installing Homebrew, see /tmp/homebrew-install.log for details"
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" > /tmp/homebrew-install.log
 fi
 
@@ -29,22 +29,20 @@ echo "Intalling open source packages view brew, including wget, openssl, rbenv, 
 brew install openssl libyaml gnutls git tree blueutil gmp imagemagick wget coreutils hub z grc spark
 brew link --force openssl
 
-echo "Installing rbenv"
-if test ! $(which rbenv)
-then
+echo "Checking rbenv"
+if ! hash rbenv 2>/dev/null; then
   echo "  Installing rbenv"
   brew install rbenv > /tmp/rbenv-install.log
 fi
 
-echo "Installing ruby-build"
-if test ! $(which ruby-build)
-then
+echo "Checking ruby-build"
+if ! hash ruby-build 2>/dev/null; then
   echo "  Installing ruby-build"
   brew install ruby-build > /tmp/ruby-build-install.log
 fi
 
 # now install two ruby versions required
-echo "Installing ruby 1.9.3"
+echo "Installing ruby 1.9.3-p547"
 rbenv install -s 1.9.3-p547     # gem install bundler from ~/Projects/progress
 rbenv global 1.9.3-p547
 gem install bundler
@@ -60,22 +58,25 @@ brew tap caskroom/cask/brew-cask
 brew install brew-cask
 
 echo "Installing core apps and utilities"
-brew cask install caffeine dropbox the-unarchiver skype transmission quicksilver skitch evernote firefox
-brew cask install istat-menus keyboard-maestro superduper textexpander viscosity minecraft fantastical 
+brew cask install caffeine dropbox the-unarchiver skype transmission skitch evernote firefox
+brew cask install quicksilver keyboard-maestro superduper istat-menus textexpander viscosity fantastical
 brew cask install vlc silverlight handbrake mplayerx
 brew cask install --appdir="/Applications" google-chrome
+
+echo "Installing games"
+brew cask install minecraft steam
 
 echo "Installing editors"
 brew cask install textmate bbedit sublime-text atom
 
 echo "Installing development tools"
-brew cask install github boot2docker rubymine sourcetree steam diffmerge heroku-toolbelt postgres
+brew cask install github boot2docker rubymine sourcetree diffmerge heroku-toolbelt postgres
 
 echo "Installing quicklook plugins"
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook 
 qlmanage -r
 
-echo "Installing homebrew-fonts"
+echo "Installing fonts"
 brew tap caskroom/fonts
 brew cask install font-inconsolata
 brew cask install font-source-code-pro

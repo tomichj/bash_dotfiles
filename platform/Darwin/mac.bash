@@ -1,4 +1,3 @@
-alias ls='ls -CFG'
 alias ps-ssh='ps auxwww | grep "ssh -C" | grep -v grep'
 alias ps-ssh-pids='ps-ssh | cut -b 8-15'
 alias kill-ssh='ps-ssh; ps-ssh-pids | xargs kill'

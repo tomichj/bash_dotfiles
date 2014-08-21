@@ -9,9 +9,6 @@ export BASH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
 
-# Platform name: Darwin, SunOS, Linux...
-platform=$(uname -s)
-
 # source path files first (excepting platform/ files)
 for file in $BASH/!(platform)*/*path*bash; do
   . $file
@@ -28,6 +25,8 @@ for file in $BASH/!(platform)/**completion*bash; do
 done
 
 # source platform-specific files
+# platform name: Darwin, SunOS, Linux, etc
+platform=$(uname -s)
 if [ -d $BASH/platform/$platform ]; then
   for file in $BASH/platform/$platform/**.bash; do
     . $file
