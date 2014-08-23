@@ -8,7 +8,7 @@ function p() {
 
 function _p() {
   local cur=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=( $(compgen -W "$(ls $PROJECTS)" -- $cur) )
+  COMPREPLY=( $(compgen -W "$(/bin/ls PROJECTS)" -- $cur) )
 }
 
 complete -F _p p

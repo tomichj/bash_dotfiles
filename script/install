@@ -70,7 +70,8 @@ echo "Installing editors"
 brew cask install textmate bbedit sublime-text atom
 
 echo "Installing development tools"
-brew cask install github boot2docker rubymine sourcetree diffmerge heroku-toolbelt postgres
+brew cask install github rubymine sourcetree diffmerge heroku-toolbelt postgres
+brew cask install boot2docker vagrant
 
 echo "Installing quicklook plugins"
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook 
