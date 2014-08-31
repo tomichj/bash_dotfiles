@@ -40,7 +40,11 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-
 # Dock
 defaults write com.apple.dock no-glass -boolean YES
+
+# Terminal
+defaults write com.apple.Terminal "Default Window Settings" "Pro"
+/usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.Terminal.plist -c 'set ":Window Settings:Pro:useOptionAsMetaKey" "false"'
+
 

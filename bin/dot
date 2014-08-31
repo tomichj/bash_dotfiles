@@ -14,7 +14,7 @@ then
   # You get the default config at platform/Darwin/duti-config.
   # Provide additional mappings, or override base settings, with ~/.duti
   if hash duti 2>/dev/null; then
-    echo "Setting application handlers (you can override default mappings in with ~/.duti)"
+    echo "Setting application handlers (you can override default mappings with ~/.duti)"
     duti $BASH/platform/Darwin/duti-config
     if [ -f $HOME/.duti ]; then
       duti $BASH/.duti
