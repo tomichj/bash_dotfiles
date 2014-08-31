@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# git squash [integration-branch]
+#
+# squash automates cleaning up a "dirty" feature or development branch. 
+# Computes the latest common commit in your integration branch automagically
+# and executes 'git rebase -i <integration commit>'.
+#
+# If no parent-branch is supplied, the squash will be generated against master.
+#
+#
+
+integration_branch=${1:-master}
+echo Squashing this branch against $integration_branch
+
+count=$(git rev-list --count HEAD ^$integration_branch)
+echo You are $count commits ahead of $integration_branch
+
+if [ $count -le 1 ]; then
+  echo Nothing to squash at this time, exiting.
+  exit 1
+fi
+
+common_ancestor_commit=$(diff -u <(git rev-list --first-parent $integration_branch) <(git rev-list --first-parent HEAD) | sed -ne 's/^ //p' | head -1)
+echo Last common commit $common_ancestor_commit
+
+if [ -z $common_ancestor_commit || $common_ancestor_commit eq "" ]; then
+  echo Cannot find a common ancestor commit! Nothing to squash, exiting.
+  exit 1
+fi
+
+read -p "Begin interactive rebase? " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 1
+fi
+
+git rebase -i $common_ancestor_commit
+
+echo
+exit 0
