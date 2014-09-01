@@ -3,8 +3,8 @@
 ## dotfiles
 
 Your dotfiles are how you personalize your system. These are mine, forked from holman's
-zsh dotfiles. zsh is the better shell, but I'm stuck with bash for corporate reasons. If you must use
-bash, start here.
+zsh dotfiles, implemented in bash. zsh is the better shell, but I'm stuck with bash
+for corporate reasons. If you must use bash, you can start here.
 
 ## install
 
@@ -54,13 +54,13 @@ There's a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
-- **topic/path.bash**: Any file named `path.bash` is loaded first and is
-  expected to setup `$PATH` or similar.
+- **topic/\*path.bash**: Any files ending in `path.bash` are loaded
+  first and are expected to setup `$PATH` or similar.
 - **topic/\*.bash**: Any files ending in `.bash` get loaded into your
   environment.
-- **topic/completion.bash**: Any file named `completion.bash` is loaded
+- **topic/\*completion.bash**: Any files ending in `completion.bash` is loaded
   last and is expected to setup autocomplete.
-- **platform/Darwin/**bash**: if on a Mac, these files are loaded.
+- **platform/Darwin/\*.bash**: if on a Mac, these files are loaded.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
@@ -69,7 +69,7 @@ There's a few special files in the hierarchy.
 ## image a fresh mac os x machine 
 
 The 'install' script can be used to set up a fresh system. Unfortunately it cannot install
-applications from the App Store, do that manually. You can run 'install' from
+applications from the App Store; do that manually. You can run 'install' on
 a fresh machine by executing:
 
 ```sh
@@ -78,10 +78,12 @@ curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install
 
 'install' will install the following (abbreviated, see script for full list):
 - Apple Command Line Tools
-- homebrew
-- homebrew cask
+- homebrew and homebrew cask
 - many open source tools, like coreutils, git, etc
-- many packaged open source and commercial apps and tools, like Dropbox, Rubymine, Bbedit, Chrome, VLC, etc
+- many packaged open source and commercial apps and tools, including Dropbox, Rubymine, Bbedit, Chrome, VLC, etc
+- text editors: Textmate, bbedit, sublime-text, atom
+- quicklook plugins
+- fonts: inconsolata, source-code pro
 
 ## bugs
 
