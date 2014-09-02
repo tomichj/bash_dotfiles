@@ -10,7 +10,7 @@
 echo "Justin's Mac OS X Installation Script"
 echo "Install all AppStore apps first"
 read -p "Press any key to continue... " -n1 -s
-echo  '\n'
+echo
 
 echo "Checking to see if Apple Command Line Tools is installed. Will prompt for installation if not."
 xcode-select -p
@@ -33,6 +33,7 @@ echo "Checking rbenv"
 if ! hash rbenv 2>/dev/null; then
   echo "  Installing rbenv"
   brew install rbenv > /tmp/rbenv-install.log
+  eval "$(rbenv init -)"
 fi
 
 echo "Checking ruby-build"
@@ -54,21 +55,25 @@ gem install bundler
 
 echo "Installing homebrew cask"
 brew update
-brew tap caskroom/cask/brew-cask
-brew install brew-cask
+#brew tap caskroom/cask/brew-cask
+brew install caskroom/cask/brew-cask
+
 
 echo "Installing core apps and utilities"
 brew cask install dropbox transmission skitch evernote firefox caffeine skype
 brew cask install quicksilver keyboard-maestro superduper istat-menus textexpander viscosity fantastical
 brew cask install vlc silverlight handbrake mplayerx plex-media-server
-brew cask install the-unarchiver unrarx shades doxie diskmaker-x
+brew cask install the-unarchiver unrarx shades doxie diskmaker-x teleport
 brew cask install --appdir="/Applications" google-chrome
 
 echo "Installing games"
 brew cask install minecraft steam
 
 echo "Installing editors"
-brew cask install textmate bbedit sublime-text atom
+brew cask install textmate
+brew cask install bbedit
+brew cask install sublime-text
+brew cask install atom
 
 echo "Installing development tools"
 brew cask install rubymine sourcetree diffmerge heroku-toolbelt github 
