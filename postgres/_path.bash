@@ -1,5 +1,5 @@
 # Postgres configuration.
-if [ -f /Applications/Postgres.app/Contents/Versions/9.3 ]; then
+if [ -d /Applications/Postgres.app/Contents/Versions/9.3 ]; then
   export POSTGRES_BIN=/Applications/Postgres.app/Contents/Versions/9.3/bin
   export PATH=$POSTGRES_BIN:${PATH}
 fi
