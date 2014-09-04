@@ -29,6 +29,11 @@ echo "Intalling open source packages view brew, including wget, openssl, rbenv, 
 brew install openssl libyaml gnutls git tree blueutil gmp imagemagick wget coreutils hub z grc spark
 brew link --force openssl
 
+echo "Setting up bash 4"
+brew install bash
+sudo bash -c "echo '/usr/local/bin/bash' >> /etc/shells"
+chsh -s /usr/local/bin/bash
+
 echo "Checking rbenv"
 if ! hash rbenv 2>/dev/null; then
   echo "  Installing rbenv"
@@ -88,6 +93,10 @@ echo "Installing fonts"
 brew tap caskroom/fonts
 brew cask install font-inconsolata
 brew cask install font-source-code-pro
+
+echo "Installing homebrew completions"
+brew tap homebrew/completions
+brew install rails-completion
 
 echo "Cleaning up homebrew caches, etc"
 brew linkapps

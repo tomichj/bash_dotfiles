@@ -9,18 +9,24 @@ export BASH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
 
+# scoop up all config files except platform files
+config_files=($BASH/!(platform)/**bash)
+
 # source path files first (excepting platform/ files)
-for file in $BASH/!(platform)*/*path*bash; do
+for file in $(\ls ${config_files[@]}|grep path); do
+  # echo path $file
   . $file
 done
 
 # source bash files that aren't completion or path files
-for file in $BASH/!(platform)/!(*completion*|*path*)**bash; do
+for file in ${config_files[@]/*+(path|completion)*/}; do
+  # echo regular bash files: $file
   . $file
 done
 
 # source completion files
-for file in $BASH/!(platform)/**completion*bash; do
+for file in $(\ls ${config_files[@]}|grep completion); do
+  # echo completion $file
   . $file
 done
 
@@ -29,6 +35,7 @@ done
 platform=$(uname -s)
 if [ -d $BASH/platform/$platform ]; then
   for file in $BASH/platform/$platform/**.bash; do
+  	# echo platform $file
     . $file
   done
 fi
@@ -38,4 +45,3 @@ fi
 if [[ -a ~/.localrc ]]; then
   . ~/.localrc
 fi
-

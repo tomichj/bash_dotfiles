@@ -74,7 +74,7 @@ sudo defaults write NSGlobalDomain MultipleSessionEnabled -bool false
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -int 0
 
 # "Power" options
-sudo defaults write /Library/Preferences/com.apple.loginwindow PowerOffDisabled -bool true
+sudo defaults write /Library/Preferences/com.apple.loginwindow PowerOffDisabled -bool false
 
 # Require full name and password
 defaults write com.apple.loginwindow SHOWFULLNAME -bool true
