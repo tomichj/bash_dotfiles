@@ -9,32 +9,31 @@ export BASH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Projects
 
-# scoop up all config files except platform files
-config_files=($BASH/!(platform)/**bash)
+# All bash files, except platform.
+# The ** glob doesn't work with bash 3.
+# config_files=($BASH/!(platform)/****bash)
+config_files=$(find $BASH -name platform -prune -o -name '*.bash' -print)
 
 # source path files first (excepting platform/ files)
-for file in $(\ls ${config_files[@]}|grep path); do
-  # echo path $file
-  . $file
+for file in ${config_files[@]}; do
+  [[ "$file" =~ "path" ]] && . $file # && echo path $file
 done
 
 # source bash files that aren't completion or path files
-for file in ${config_files[@]/*+(path|completion)*/}; do
-  # echo regular bash files: $file
-  . $file
+for file in ${config_files[@]}; do
+  ! [[ "$file" =~ "path" ]] && ! [[ "$file" =~ "completion" ]] && . $file # && echo bash $file
 done
 
 # source completion files
-for file in $(\ls ${config_files[@]}|grep completion); do
-  # echo completion $file
-  . $file
+for file in ${config_files[@]}; do
+  [[ "$file" =~ "completion" ]] && . $file # && echo completion $file
 done
 
 # source platform-specific files
 # platform name: Darwin, SunOS, Linux, etc
 platform=$(uname -s)
 if [ -d $BASH/platform/$platform ]; then
-  for file in $BASH/platform/$platform/**.bash; do
+  for file in $(find $BASH/platform/$platform -name "*.bash"); do
   	# echo platform $file
     . $file
   done
