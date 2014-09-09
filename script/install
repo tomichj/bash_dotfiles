@@ -68,7 +68,7 @@ echo "Installing core apps and utilities"
 brew cask install dropbox transmission skitch evernote firefox caffeine skype
 brew cask install quicksilver keyboard-maestro superduper istat-menus textexpander viscosity fantastical
 brew cask install vlc silverlight handbrake mplayerx plex-media-server
-brew cask install the-unarchiver unrarx shades doxie diskmaker-x teleport
+brew cask install the-unarchiver unrarx shades doxie diskmaker-x teleport switchaudio-osx
 brew cask install --appdir="/Applications" google-chrome
 
 echo "Installing games"
@@ -96,7 +96,8 @@ brew cask install font-source-code-pro
 
 echo "Installing homebrew completions"
 brew tap homebrew/completions
-brew install rails-completion
+brew install bash-completion docker-completion
+# brew install rails-completion
 
 echo "Cleaning up homebrew caches, etc"
 brew linkapps
