@@ -30,7 +30,7 @@ echo Squashing this branch against $integration_branch
 count=$(git rev-list --count HEAD ^$integration_branch)
 echo You are $count commits ahead of $integration_branch
 
-if [ $count -le 1 ]; then
+if [ $count -le 2 ]; then
   echo Nothing to squash at this time, exiting.
   exit 1
 fi
@@ -38,11 +38,12 @@ fi
 common_ancestor_commit=$(diff -u <(git rev-list --first-parent $integration_branch) <(git rev-list --first-parent HEAD) | sed -ne 's/^ //p' | head -1)
 echo Last common commit $common_ancestor_commit
 
-if [ -z $common_ancestor_commit || $common_ancestor_commit eq "" ]; then
+if [[ -z $common_ancestor_commit ]]; then
   echo Cannot find a common ancestor commit! Nothing to squash, exiting.
   exit 1
 fi
 
+echo Use interactive rebase to squash this branch into one commit.
 read -p "Begin interactive rebase? " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then

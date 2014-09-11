@@ -7,15 +7,22 @@
 # consider checking for FDE instead of just enabling it.
 # sudo fdesetup enable
 
-echo "Justin's Mac OS X Installation Script"
-echo "Install all AppStore apps first"
-read -p "Press any key to continue... " -n1 -s
-echo
+function pause() {
+  read -p "$*" -n1
+}
+
+echo "Justin's Mac OS X Installation Script. This will install homebrew, homebrew cask, and a lot of software."
+echo "Install your App Store apps manually later."
+pause 'Ctrl-c to quit, or press any key to continue...'
+
 
 echo "Checking to see if Apple Command Line Tools is installed. Will prompt for installation if not."
-xcode-select -p
+xcode-select -p 2>/dev/null
 if [[ $? -ne 0 ]]; then
-  xcode-select --install
+  echo "Wait while Apple Command Line Tools completes. Do not continue until installation is complete."
+  xcode-select --install 2>/dev/null
+  # read -p "One install is complete, press any key to continue... " -n1 -s
+  pause 'Xcode command line tools install finished? Press any key to continue...'
 fi
 
 echo Checking Homebrew

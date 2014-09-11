@@ -73,7 +73,7 @@ applications from the App Store; do that manually. You can run 'install' on
 a fresh machine by executing:
 
 ```sh
-curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install | bash /dev/stdin
+bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
 ```
 
 'install' will install the following (abbreviated, see script for full list):
