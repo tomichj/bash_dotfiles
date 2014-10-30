@@ -159,7 +159,7 @@ defaults write com.apple.finder FXDefaultSearchScope SCcf
 
 # enable screen sharing, warn on unencrypted connections
 sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
-sudo sh -c "launchctl $loaded /System/Library/LaunchDaemons/com.apple.screensharing.plist 2> /dev/null"
+sudo sh -c "launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist 2> /dev/null"
 defaults write com.apple.ScreenSharing dontWarnOnVNCEncryption -bool false
 
 # Don't write .DS_Stores files

@@ -30,7 +30,7 @@ echo Squashing this branch against $integration_branch
 count=$(git rev-list --count HEAD ^$integration_branch)
 echo You are $count commits ahead of $integration_branch
 
-if [ $count -le 2 ]; then
+if [ $count -lt 2 ]; then
   echo Nothing to squash at this time, exiting.
   exit 1
 fi
