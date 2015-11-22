@@ -68,22 +68,7 @@ There's a few special files in the hierarchy.
 
 ## image a fresh mac os x machine 
 
-The 'install' script can be used to set up a fresh system. Unfortunately it cannot install
-applications from the App Store; do that manually. You can run 'install' on
-a fresh machine by executing:
-
-```sh
-bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
-```
-
-'install' will install the following (abbreviated, see script for full list):
-- Apple Command Line Tools
-- homebrew and homebrew cask
-- many open source tools, like coreutils, git, etc
-- many packaged open source and commercial apps and tools, including Dropbox, Rubymine, Bbedit, Chrome, VLC, etc
-- text editors: Textmate, bbedit, sublime-text, atom
-- quicklook plugins
-- fonts: inconsolata, source-code pro
+See my Mac OS X [laptop configuration script](https://github.com/tomichj/laptop).
 
 ## bugs
 
