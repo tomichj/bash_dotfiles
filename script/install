@@ -5,8 +5,10 @@
 #
 
 if [[ ! -d ~/.dotfiles ]]; then
-  echo "Installing tomichj/dotfiles"
-  git clone https://github.com/tomichj/dotfiles ~/.dotfiles
-  ~/.dotfiles/script/bootstrap
-  ~/.dotfiles/bin/dot
+	echo "Installing tomichj/dotfiles"
+	git clone https://github.com/tomichj/dotfiles ~/.dotfiles
+	~/.dotfiles/script/bootstrap
+	~/.dotfiles/bin/dot
+else
+	echo "Aborting; you have an existing .dotfiles directory."
 fi
