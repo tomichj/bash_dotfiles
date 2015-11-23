@@ -74,7 +74,6 @@ Download, review, then execute the script:
 bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
 ```
 
-
 ## image a fresh mac os x machine 
 
 See my Mac OS X [laptop configuration script](https://github.com/tomichj/laptop).
