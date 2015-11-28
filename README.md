@@ -1,19 +1,25 @@
 # tomich does bash dotfiles
 
-## dotfiles
-
 Your dotfiles are how you personalize your system. These are mine, forked from holman's
 zsh dotfiles, implemented in bash. zsh is the better shell, but I'm stuck with bash
 for corporate reasons. If you must use bash, you can start here.
 
 ## install
 
-Run this:
+There are two ways to install these dotfiles:
+
+1) Use git to clone this repository, then install, like so:
 
 ```sh
 git clone https://github.com/tomichj/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
+```
+
+2) Execute the install script via vurl, which will clone the repo and bootstrap you automatically:
+
+```sh
+bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
@@ -65,14 +71,6 @@ There's a few special files in the hierarchy.
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
-
-## install
-
-Download, review, then execute the script:
-
-```sh
-bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
-```
 
 ## image a fresh mac os x machine 
 
