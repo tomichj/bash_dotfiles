@@ -15,7 +15,8 @@
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Use AirDrop over every interface. srsly this should be a default.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
 
 # Show the ~/Library folder.
 chflags nohidden ~/Library
@@ -28,10 +29,38 @@ defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 
 # Quicklook
-defaults write com.apple.finder QLEnableTextSelection -bool true
+defaults write com.apple.finder QLEnableTextSelection -bool true # not working in 10.11
 defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
-defaults write com.apple.finder QLEnableXRayFolders 1
 
+# Disable Game Center launching
+sudo defaults write /System/Library/LaunchAgents/com.apple.gamed Disabled -bool true
+
+# Disable auto-adjust brightness
+sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor.plist "Automatic Display Enabled" -bool false
+
+# Wake for network access
+sudo pmset -a womp 1
+
+# Disable startup sound
+sudo nvram SystemAudioVolume=" "
+
+# Disable new disks for time machine warning
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "$HOME/Desktop"
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+# Finally disable opening random Apple photo applications when plugging in devices
+# https://twitter.com/stroughtonsmith/status/651854070496534528
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
 
 
 ####################################################################
@@ -58,6 +87,7 @@ defaults write com.apple.dock workspaces-auto-swoosh -bool false
 
 # Displays have separate spaces
 defaults write com.apple.spaces spans-displays -bool false
+
 
 
 ####################################################################
@@ -115,12 +145,15 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
 # Sidebar icon size: Small
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
 
 # Ask for password after 5 seconds
 defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 5
+defaults write com.apple.screensaver askForPasswordDelay -int 10
 
 # Screen Saver: Flurry
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -string "Flurry" path -string "/System/Library/Screen Savers/Flurry.saver" type -int 0
@@ -128,7 +161,6 @@ defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -s
 # Dock, ditch the glass
 defaults write com.apple.dock no-glass -boolean YES
 defaults write com.apple.dock hide-mirror -boolean YES
-
 
 # Dock Position (left, bottom, right)
 defaults write com.apple.dock orientation -string "right"
@@ -150,7 +182,7 @@ defaults write com.apple.finder DesktopViewOptions.IconSize -int 32
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
-# File view
+# File view - open everyhing in Finder's list view
 defaults write com.apple.finder FXPreferredViewStyle Nlsv
 defaults write com.apple.finder FK_SavedViewStyle Nlsv
 
@@ -163,7 +195,7 @@ sudo sh -c "launchctl load /System/Library/LaunchDaemons/com.apple.screensharing
 defaults write com.apple.ScreenSharing dontWarnOnVNCEncryption -bool false
 
 # Don't write .DS_Stores files
-defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 
 #######################################
@@ -210,6 +242,13 @@ defaults write com.apple.dock showAppExposeGestureEnabled -bool true
 defaults write com.apple.dock showDesktopGestureEnabled -bool true
 defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
 
+
+########################################################
+# Dashboard - just say no
+
+# Don't show Dashboard as a Space
+defaults write com.apple.dock dashboard-in-overlay -bool true
+
 # Disable the Dashboard
 defaults write com.apple.dashboard mcx-disabled -boolean true
 
@@ -217,9 +256,9 @@ defaults write com.apple.dashboard mcx-disabled -boolean true
 ########################################################
 # Transmission
 # Use `~/Documents/Torrents` to store incomplete downloads
-mkdir -p ${HOME}/Downloads/torrents/incomplete
+mkdir -p "${HOME}/Downloads/torrents/ incomplete"
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/torrents/incomplete"
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/torrents/ incomplete"
 
 # Don’t prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
@@ -235,7 +274,7 @@ defaults write org.m0k.transmission WarningLegal -bool false
 
 
 ########################################################
-# Chrome - lock it down for max privary, minimum leakage
+# Chrome - lock it down for max privacy, minimum leakage
 
 # Do not allow any site to track my physical location.
 defaults write com.google.Chrome DefaultGeolocationSetting -int 2
