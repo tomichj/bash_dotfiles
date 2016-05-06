@@ -6,8 +6,8 @@ shopt -s extglob
 # shortcut to this dotfiles path is $BASH
 export BASH=$HOME/.dotfiles
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/Projects
+# your project folder that we can `p [tab]` to
+export PROJECTS=$HOME/Projects
 
 # All bash files, except platform.
 # The ** glob doesn't work with bash 3.
