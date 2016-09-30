@@ -1,0 +1,81 @@
+# Sample gitconfig
+#
+
+[hub]
+  protocol = https
+[user]
+  name =
+  email =
+[credential]
+  helper = osxkeychain
+[alias]
+  co = checkout
+  promote = !$ZSH/bin/git-promote
+  wtf     = !$ZSH/bin/git-wtf
+  rank-contributors = !$ZSH/bin/git-rank-contributors
+  count   = !git shortlog -sn
+
+  # checks that your local copy of the ref that you’re overwriting
+  # is up-to-date before overwriting it
+  please = push --force-with-lease
+
+  # initialize your repo & create an empty root commit in one quick step
+  it = !git init && git commit -m “root” --allow-empty
+
+  # git stsh      # stash only unstaged changes to tracked files
+  # git stash     # stash any changes to tracked files
+  # git staash    # stash untracked and tracked files
+  # git staaash   # stash ignored, untracked, and tracked files
+  stsh = stash --keep-index
+  staash = stash --include-untracked
+  staaash = stash --all
+
+  # short status
+  shorty = status --short --branch
+
+  # always create a merge commit.
+  merc = merge --no-ff
+
+  # graphical log
+  grog = log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\"
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[core]
+  excludesfile = /Users/tomichj/.gitignore
+  editor = emacs
+  autocrlf = false
+[apply]
+  whitespace = nowarn
+[mergetool]
+  keepBackup = false
+[difftool]
+  prompt = false
+[help]
+  autocorrect = 1
+[push]
+  # See `git help config` (search for push.default)
+  # for more information on different options of the below setting.
+  #
+  # Setting to git 2.0 default to surpress warning message
+  default = simple
+[difftool "sourcetree"]
+  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+  path =
+[mergetool "sourcetree"]
+  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+  trustExitCode = true
+[filter "media"]
+  clean = git media clean %f
+  smudge = git media smudge %f
+  required = true
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+[commit]
+  template = ~/.dotfiles/git/git-commit-template.txt
+[log]
+  decorate = true
