@@ -4,8 +4,8 @@
 [hub]
   protocol = https
 [user]
-  name =
-  email =
+	name = 
+	email = 
 [credential]
   helper = osxkeychain
 [alias]
@@ -44,7 +44,7 @@
   branch = auto
   ui = true
 [core]
-  excludesfile = /Users/tomichj/.gitignore
+	excludesfile = /Users/tomichj/.gitignore
   editor = emacs
   autocrlf = false
 [apply]
@@ -62,11 +62,11 @@
   # Setting to git 2.0 default to surpress warning message
   default = simple
 [difftool "sourcetree"]
-  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	trustExitCode = true
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f
@@ -76,6 +76,6 @@
   smudge = git-lfs smudge %f
   required = true
 [commit]
-  template = ~/.dotfiles/git/git-commit-template.txt
+	template = ~/.dotfiles/git/git-commit-template.txt
 [log]
   decorate = true
