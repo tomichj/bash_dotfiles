@@ -6,4 +6,7 @@ puma-dev-restart() {
 
 puma-dev-kill() {
   pkill -USR1 puma-dev
+  ps auxwww | grep puma | grep -v grep | cut -b 14-22 | xargs kill
 }
+
+alias puma-dev-logs='less ~/Library/Logs/puma-dev.log'

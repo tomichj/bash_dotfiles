@@ -50,7 +50,7 @@ export VISUAL=emacs
 export EDITOR=emacs
 export PAGER=less
 # export HISTFILE="$HOME/.bash.history"
-umask 027
+umask 022
 set -o emacs
 
 
