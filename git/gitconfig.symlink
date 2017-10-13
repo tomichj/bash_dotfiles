@@ -4,8 +4,8 @@
 [hub]
   protocol = https
 [user]
-	name = 
-	email = 
+	name = Justin Tomich
+	email = tomichj@gmail.com
 [credential]
   helper = osxkeychain
 [alias]
@@ -72,9 +72,10 @@
   smudge = git media smudge %f
   required = true
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [commit]
 	template = ~/.dotfiles/git/git-commit-template.txt
 [log]

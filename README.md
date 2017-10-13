@@ -16,7 +16,7 @@ cd ~/.dotfiles
 script/bootstrap
 ```
 
-2) Execute the install script via vurl, which will clone the repo and bootstrap you automatically:
+2) Execute the install script via curl, which will clone the repo and bootstrap you automatically:
 
 ```sh
 bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
@@ -45,7 +45,7 @@ symlinked without extension into `$HOME` when you run `script/bootstrap`.
 
 Files included in platform/ will only be sourced if on the apropriate platform.
 Platform is determined using 'uname -s'. Currently configuration is only provided
-for Darwin/Mac OS X, but Linux and SunOS support may be added in the near future.
+for Darwin/Mac OS X, but Linux support may be added in the near future.
 
 ## what's inside
 

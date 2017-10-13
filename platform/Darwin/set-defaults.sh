@@ -17,12 +17,23 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
+# Always open everything in Finder's list view. This is important.
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Show the ~/Library folder.
 chflags nohidden ~/Library
 
 # Set a really fast key repeat.
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
+
+
+
+
+
+
+
+
+###############################################################################
 
 # Terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
@@ -31,9 +42,6 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 # Quicklook
 defaults write com.apple.finder QLEnableTextSelection -bool true # not working in 10.11
 defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
-
-# Disable Game Center launching
-sudo defaults write /System/Library/LaunchAgents/com.apple.gamed Disabled -bool true
 
 # Disable auto-adjust brightness
 sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor.plist "Automatic Display Enabled" -bool false
@@ -188,11 +196,6 @@ defaults write com.apple.finder FK_SavedViewStyle Nlsv
 
 # Set Finder default search scope to current folder
 defaults write com.apple.finder FXDefaultSearchScope SCcf
-
-# enable screen sharing, warn on unencrypted connections
-sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
-sudo sh -c "launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist 2> /dev/null"
-defaults write com.apple.ScreenSharing dontWarnOnVNCEncryption -bool false
 
 # Don't write .DS_Stores files
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
