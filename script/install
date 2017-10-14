@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Install dotfiles
+# Install dotfiles from the git repo, and bootstrap your system
 #
 
 if [[ ! -d ~/.dotfiles ]]; then

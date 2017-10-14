@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# bootstrap installs things.
+# bootstrap installs things!
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd)
@@ -71,7 +71,8 @@ link_file () {
 
       else
 
-        user "File already exists: $(basename "$src"), what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+        user "File already exists: $(basename "$src"), what do you want to do?\n\
+        [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
         read -n 1 action
 
         case "$action" in
@@ -138,6 +139,21 @@ install_dotfiles () {
 
 setup_gitconfig
 install_dotfiles
+
+# If we're on a Mac, let's install and setup homebrew.
+if [ "$(uname -s)" == "Darwin" ]
+then
+  info "installing dependencies\n"
+  if source bin/dot | while read -r data; do info "$data"; done
+  then
+    $DOTFILES_ROOT/brew/install.sh
+    brew bundle
+    success "dependencies installed"
+  else
+    fail "error installing dependencies"
+  fi
+fi
+
 
 echo ''
 echo '  All installed!'
