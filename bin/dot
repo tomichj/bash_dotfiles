@@ -5,6 +5,7 @@
 # `dot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
 
+set -e
 
 parentDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
 dotfilesDirectory="$(cd "$( dirname "$parentDirectory" )" && pwd -P)"
@@ -43,12 +44,12 @@ export BASH=$HOME/.dotfiles
 $BASH/platform/Darwin/set-defaults.sh
 
 # Install homebrew
-# $BASH/homebrew/install.sh 2>&1
+$BASH/brew/install.sh 2>&1
 
 # Upgrade homebrew
-# echo "› brew update"
-# brew update
+echo "› brew update"
+brew update
 
 # Install software
-# echo "› $BASH/script/install"
-# $BASH/script/install
+echo "› $BASH/script/install"
+$BASH/script/install
