@@ -1,7 +1,4 @@
 #################
 # Bash Profile
 
-# leave this? do this cci boxes only?
-#[ "$TERM" = "xterm-color" ] && export TERM=xterm
-
 . ${HOME}/.bashrc
