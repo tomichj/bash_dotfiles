@@ -9,6 +9,12 @@ export BASH=$HOME/.dotfiles
 # your project folder that we can `p [tab]` to
 export PROJECTS=$HOME/Projects
 
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+if [[ -a ~/.localrc ]]; then
+  . ~/.localrc
+fi
+
 # All bash files, except platform.
 # The ** glob doesn't work with bash 3.
 # config_files=($BASH/!(platform)/****bash)
@@ -39,8 +45,3 @@ if [ -d $BASH/platform/$platform ]; then
   done
 fi
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]; then
-  . ~/.localrc
-fi

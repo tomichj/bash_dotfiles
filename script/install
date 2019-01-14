@@ -7,31 +7,8 @@ set -e
 cd "$(dirname $0)"/..
 
 # Run Homebrew through the Brewfile
-echo "› brew bundle"
-brew bundle
+#echo "› brew bundle"
+#brew bundle
 
 # find the installers and run them iteratively
 find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
-
-
-
-
-
-
-
-
-
-
-
-#
-# Install dotfiles from the git repo, and bootstrap your system
-#
-
-# if [[ ! -d ~/.dotfiles ]]; then
-# 	echo "Installing tomichj/dotfiles"
-# 	git clone https://github.com/tomichj/dotfiles ~/.dotfiles
-# 	~/.dotfiles/script/bootstrap
-# 	~/.dotfiles/bin/dot
-# else
-# 	echo "Aborting; you have an existing .dotfiles directory."
-# fi

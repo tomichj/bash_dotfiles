@@ -53,6 +53,9 @@ export PAGER=less
 umask 022
 set -o emacs
 
+# Good old less, make it suck less.
+export LESS='-R'
+
 
 # ---------------- local alias file ------------------
 alias add-alias='cat >> ~/.alias.local; source ~/.alias.local'

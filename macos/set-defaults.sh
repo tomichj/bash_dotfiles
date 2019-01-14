@@ -15,10 +15,8 @@
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Use AirDrop over every interface. srsly this should be a default.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-
-# Always open everything in Finder's list view. This is important.
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+# defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 
 # Show the ~/Library folder.
 chflags nohidden ~/Library
@@ -26,10 +24,12 @@ chflags nohidden ~/Library
 # Set a really fast key repeat.
 defaults write NSGlobalDomain KeyRepeat -int 1
 
+# Set the Finder prefs for showing a few different volumes on the Desktop.
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-
-
-
+# Always open everything in Finder's list view. This is important.
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 
 
@@ -39,9 +39,9 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 
-# Quicklook
-defaults write com.apple.finder QLEnableTextSelection -bool true # not working in 10.11
-defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
+# # Quicklook
+# defaults write com.apple.finder QLEnableTextSelection -bool true # not working in 10.11
+# defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
 
 # Disable auto-adjust brightness
 sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor.plist "Automatic Display Enabled" -bool false
@@ -66,22 +66,10 @@ defaults write com.apple.screencapture location -string "$HOME/Desktop"
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
-# Finally disable opening random Apple photo applications when plugging in devices
+# Disable opening random Apple photo applications when plugging in devices
 # https://twitter.com/stroughtonsmith/status/651854070496534528
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
 
-
-####################################################################
-# Security
-
-# Firewall - activate, allow signed apps, go stealth mode
-path_to_firewall_binary="/usr/libexec/ApplicationFirewall/socketfilterfw"
-sudo sh -c "$path_to_firewall_binary --setglobalstate true &> /dev/null"
-sudo sh -c "$path_to_firewall_binary --setallowsigned true &> /dev/null"
-sudo sh -c "$path_to_firewall_binary --setstealthmode true &> /dev/null"
-
-# Gatekeeper - enable
-sudo spctl --master-enable
 
 ####################################################################
 # Spaces
@@ -101,10 +89,6 @@ defaults write com.apple.spaces spans-displays -bool false
 ####################################################################
 # Login
 
-# Autologin
-sudo defaults delete /Library/Preferences/com.apple.loginwindow autoLoginUser 2> /dev/null
-sudo rm -f /etc/kcpassword
-
 # fast user switching
 sudo defaults write NSGlobalDomain MultipleSessionEnabled -bool false
 
@@ -122,9 +106,6 @@ defaults write com.apple.loginwindow SHOWFULLNAME -bool true
 ###################################################################
 # Safari
 
-# Hide Safari's bookmark bar.
-defaults write com.apple.Safari ShowFavoritesBar -bool false
-
 # Set up Safari for development.
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
@@ -137,11 +118,6 @@ defaults write com.apple.Safari HomePage -string "about:blank"
 
 # Don't open "safe" files after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-
-# Disallow guest access to shared folders
-sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool false
-sudo defaults write /Library/Preferences/com.apple.smb.server AllowGuestAccess -bool false
-
 
 
 ###################################################################
@@ -256,25 +232,6 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 defaults write com.apple.dashboard mcx-disabled -boolean true
 
 
-########################################################
-# Transmission
-# Use `~/Documents/Torrents` to store incomplete downloads
-mkdir -p "${HOME}/Downloads/torrents/ incomplete"
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/torrents/ incomplete"
-
-# Don’t prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
-
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
-
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
-
 
 ########################################################
 # Chrome - lock it down for max privacy, minimum leakage
@@ -310,7 +267,7 @@ defaults write com.google.Chrome AllowOutdatedPlugins -bool NO
 # Disable the automatic search and installation of missing plugins.
 defaults write com.google.Chrome DisablePluginFinder -bool YES
 
-
+	
 
 
 ########################################################

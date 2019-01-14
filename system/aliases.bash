@@ -1,7 +1,7 @@
 alias ls='ls -CFG'
 
-# grc overides for ls
-#   Made possible through contributions from generous benefactors like
+# gls overides for ls
+# Made possible through contributions from generous benefactors like:
 #   `brew install coreutils`
 if hash gls 2>/dev/null; then
   alias ls="gls -F --color"

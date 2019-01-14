@@ -2,4 +2,4 @@
 export DISABLE_SPRING=1
 
 # Clean up fsevent watchers, another way to cope with the "Listen bug"
-alias kfse='pkill -9 fsevent_wat*'
+alias kill-fs-event-watcher='pkill -9 fsevent_wat*'
