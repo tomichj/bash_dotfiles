@@ -18,7 +18,10 @@ This will symlink the appropriate files in `.dotfiles` to your home directory.
 Everything is configured and tweaked within `~/.dotfiles`.
 
 The main file you'll want to change right off the bat is `bash/bashrc.symlink`,
-which sets up a few paths that'll be different on your particular machine.
+which sets up a few paths that'll be different on your particular machine. 
+Especially:
+- BASH, which points to your dotfiles
+- PROJECTS, which points to your development directory
 
 `dot` is a simple script that installs some dependencies, sets sane OS X
 defaults, and so on. Tweak this script, and occasionally run `dot` from
@@ -64,7 +67,7 @@ There's a few special files in the hierarchy.
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `script/bootstrap`.
 
-## image a fresh mac os x machine 
+## Need to image a fresh mac os x machine?
 
 See my Mac OS X [laptop configuration script](https://github.com/tomichj/laptop).
 
