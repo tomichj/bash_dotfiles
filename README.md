@@ -20,8 +20,8 @@ Everything is configured and tweaked within `~/.dotfiles`.
 The main file you'll want to change right off the bat is `bash/bashrc.symlink`,
 which sets up a few paths that'll be different on your particular machine. 
 Especially:
-- BASH, which points to your dotfiles
-- PROJECTS, which points to your development directory
+- `BASH` points to your dotfiles. Defaults to `~/.dotfiles`.
+- `PROJECTS` points to your development directory. Defaults to `~/Projects`.
 
 `dot` is a simple script that installs some dependencies, sets sane OS X
 defaults, and so on. Tweak this script, and occasionally run `dot` from
