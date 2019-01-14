@@ -11,6 +11,9 @@
 #   https://github.com/thekompanee/sinstallation/tree/master/preferences
 
 
+##################################################################
+# Essentials
+
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
 
@@ -26,8 +29,6 @@ chflags nohidden ~/Library
 # Set a really fast key repeat.
 defaults write NSGlobalDomain KeyRepeat -int 1
 
-
-###############################################################################
 # Terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
@@ -113,6 +114,7 @@ defaults write com.apple.Safari HomePage -string "about:blank"
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
 
+
 ###################################################################
 # Finder, Desktop & Screen Saver
 
@@ -170,6 +172,7 @@ defaults write com.apple.finder FXDefaultSearchScope SCcf
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 
+
 #######################################
 # Trackpad
 
@@ -215,6 +218,7 @@ defaults write com.apple.dock showDesktopGestureEnabled -bool true
 defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
 
 
+
 ########################################################
 # Dashboard - just say no
 
@@ -222,7 +226,8 @@ defaults write com.apple.dock showLaunchpadGestureEnabled -bool false
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
 # Disable the Dashboard
-defaults write com.apple.dashboard mcx-disabled -boolean true
+# defaults write com.apple.dashboard mcx-disabled -boolean true
+
 
 
 ########################################################
@@ -258,7 +263,6 @@ defaults write com.google.Chrome AllowOutdatedPlugins -bool NO
 
 # Disable the automatic search and installation of missing plugins.
 defaults write com.google.Chrome DisablePluginFinder -bool YES
-
 
 
 

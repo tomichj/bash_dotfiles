@@ -1,4 +1,7 @@
-# This is the top-level master bash file that actually does stuff
+# This is the top-level master bash file that actually does stuff.
+#
+# Resposible for setting up the bash environment,
+# and sourcing all other bash files.
 
 # enable bash extended globbing
 shopt -s extglob

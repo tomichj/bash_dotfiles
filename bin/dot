@@ -40,13 +40,19 @@ done
 
 export BASH=$HOME/.dotfiles
 
-# Set macOS defaults
-$BASH/platform/Darwin/set-defaults.sh
+if [ "$(uname -s)" == "Darwin" ]
+then
+	# Set macOS defaults
+	echo "Setting Mac OS X defaults"
+	$BASH/platform/Darwin/set-defaults.sh
 
-# Upgrade homebrew
-# echo "› brew update"
-# brew update
+	# Upgrade homebrew
+	echo "› brew update"
+	brew update
+	echo "Execute 'brew upgrade' when you're ready."
+fi
 
-# Install software
+# Install dotfile installers...
+# Most have been removed, but just in case.
 echo "› $BASH/script/install"
 $BASH/script/install

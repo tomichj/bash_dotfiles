@@ -6,20 +6,12 @@ for corporate reasons. If you must use bash, you can start here.
 
 ## install
 
-There are two ways to install these dotfiles:
-
-1) Use git to clone this repository, then install, like so:
+Use git to clone this repository, then run the bootstrap script:
 
 ```sh
 git clone https://github.com/tomichj/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 script/bootstrap
-```
-
-2) Execute the install script via curl, which will clone the repo and bootstrap you automatically:
-
-```sh
-bash <(curl -s https://raw.githubusercontent.com/tomichj/dotfiles/master/script/install)
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
