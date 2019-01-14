@@ -15,8 +15,10 @@
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Use AirDrop over every interface. srsly this should be a default.
-# defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+# Always open everything in Finder's list view. This is important.
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Show the ~/Library folder.
 chflags nohidden ~/Library
@@ -24,24 +26,15 @@ chflags nohidden ~/Library
 # Set a really fast key repeat.
 defaults write NSGlobalDomain KeyRepeat -int 1
 
-# Set the Finder prefs for showing a few different volumes on the Desktop.
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-
-# Always open everything in Finder's list view. This is important.
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
-
-
 
 ###############################################################################
-
 # Terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 
-# # Quicklook
-# defaults write com.apple.finder QLEnableTextSelection -bool true # not working in 10.11
-# defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
+# Quicklook
+defaults write com.apple.finder QLEnableTextSelection -bool true # not working in 10.11
+defaults write com.apple.finder QLHidePanelOnDeactivate -bool true
 
 # Disable auto-adjust brightness
 sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor.plist "Automatic Display Enabled" -bool false
@@ -66,7 +59,7 @@ defaults write com.apple.screencapture location -string "$HOME/Desktop"
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
-# Disable opening random Apple photo applications when plugging in devices
+# Finally disable opening random Apple photo applications when plugging in devices
 # https://twitter.com/stroughtonsmith/status/651854070496534528
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
 
@@ -232,7 +225,6 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 defaults write com.apple.dashboard mcx-disabled -boolean true
 
 
-
 ########################################################
 # Chrome - lock it down for max privacy, minimum leakage
 
@@ -267,7 +259,7 @@ defaults write com.google.Chrome AllowOutdatedPlugins -bool NO
 # Disable the automatic search and installation of missing plugins.
 defaults write com.google.Chrome DisablePluginFinder -bool YES
 
-	
+
 
 
 ########################################################
