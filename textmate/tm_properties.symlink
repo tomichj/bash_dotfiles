@@ -1,1 +1,71 @@
-excludeDirectories = "tmp"
+encoding         = UTF-8
+fontName         = "Menlo"
+fontSize         = 12
+lineEndings      = '\n'
+showInvisibles   = false
+softWrap         = true
+tabSize          = 2
+
+
+# excludeDirectories = "tmp"
+
+myExtraExcludes = "log,vendor,tmp"
+excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}" 
+excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}" 
+fileBrowserGlob  = "{*,.tm_properties,.htaccess}"
+
+# Display the name of the home directory.
+# windowTitle         = "$TM_DISPLAYNAME — ${CWD}"
+windowTitle = '${TM_DIRECTORY:+${TM_DIRECTORY/^${projectDirectory}(?:\/(.+))?/${1:+$1/}/}}$TM_DISPLAYNAME$windowTitleProject$windowTitleSCM'
+
+
+[ text ]
+spellChecking    = true
+softWrap         = false
+wrapColumn       = "Use Window Frame"
+softTabs         = true
+tabSize          = 2
+
+[ text.plain ]
+spellChecking    = true
+softWrap         = true
+wrapColumn       = "Use Window Frame"
+softTabs         = false
+tabSize          = 4
+
+[ text.html.markdown ]
+spellChecking    = true
+softWrap         = true
+wrapColumn       = "Use Window Frame"
+softTabs         = false
+tabSize          = 4
+
+[ source ]
+softWrap         = true
+wrapColumn       = "Use Window Frame"
+softTabs         = true
+tabSize          = 2
+
+[ source.plist ]
+softTabs       = false
+tabSize        = 4
+
+[ source.tm-properties ]
+spellChecking  = false
+
+[ "{Capfile,Gemfile,Gemfile.lock,Guardfile,Rakefile}" ]
+fileType         = source.ruby
+
+[ Procfile ]
+fileType         = source.yaml
+
+[ source.slim ]
+softTabs         = true
+tabSize          = 2
+
+[ source.coffee ]
+softTabs         = true
+tabSize          = 2
+
+[ attr.untitled ]
+fileType         = source.ruby.rails
