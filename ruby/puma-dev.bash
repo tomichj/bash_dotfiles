@@ -9,4 +9,4 @@ puma-dev-kill() {
   ps auxwww | grep puma | grep -v grep | cut -b 14-22 | xargs kill
 }
 
-alias puma-dev-logs='less ~/Library/Logs/puma-dev.log'
+alias puma-dev-logs='tail -f ~/Library/Logs/puma-dev.log'
