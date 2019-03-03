@@ -37,8 +37,8 @@ tabSize          = 4
 spellChecking    = true
 softWrap         = true
 wrapColumn       = "Use Window Frame"
-softTabs         = false
-tabSize          = 4
+softTabs         = true
+tabSize          = 2
 
 [ source ]
 softWrap         = true
