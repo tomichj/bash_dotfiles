@@ -69,7 +69,7 @@ There's a few special files in the hierarchy.
 
 ## Need to image a fresh mac os x machine?
 
-See my Mac OS X [laptop configuration script](https://github.com/tomichj/laptop).
+These dotfiles support [strap](https://github.com/mikemcquaid/strap). Strap will install this repo, run script/bootstrap, and then finish with script/strap-after-setup. 
 
 ## bugs
 
