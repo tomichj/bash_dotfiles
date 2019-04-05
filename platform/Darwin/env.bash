@@ -1,3 +1,3 @@
 # on a mac, use sublime text
-export VISUAL=subl
-export EDITOR=subl
+export VISUAL=mate
+export EDITOR=mate
