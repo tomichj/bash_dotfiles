@@ -52,7 +52,6 @@ then
 	echo "Execute 'brew upgrade' when you're ready."
 fi
 
-# Install dotfile installers...
-# Most have been removed, but just in case.
+# Install software
 echo "› $BASH/script/install"
 $BASH/script/install
