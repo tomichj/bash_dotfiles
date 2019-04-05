@@ -2,9 +2,6 @@
   path = ~/.gitconfig.local
 [hub]
   protocol = https
-[user]
-	name = Justin Tomich
-	email = tomichj@gmail.com
 [credential]
   helper = osxkeychain
 [alias]
