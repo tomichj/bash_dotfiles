@@ -1,6 +1,5 @@
-# Sample gitconfig
-#
-
+[include]
+  path = ~/.gitconfig.local
 [hub]
   protocol = https
 [user]
