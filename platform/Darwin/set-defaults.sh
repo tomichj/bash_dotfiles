@@ -64,6 +64,12 @@ defaults write com.apple.screencapture type -string "png"
 # https://twitter.com/stroughtonsmith/status/651854070496534528
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool YES
 
+# Enable the application firewall
+# 0 = off
+# 1 = on for specific services
+# 2 = on for essential services
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+
 
 ####################################################################
 # Spaces
@@ -104,7 +110,10 @@ defaults write com.apple.loginwindow SHOWFULLNAME -bool true
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
+
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Homepage
@@ -144,8 +153,8 @@ defaults write com.apple.dock hide-mirror -boolean YES
 # Dock Position (left, bottom, right)
 defaults write com.apple.dock orientation -string "right"
 
-# Size - make it small
-defaults write com.apple.dock tilesize -int 16;
+# Size - make it smallish
+defaults write com.apple.dock tilesize -int 32;
 
 # Dock hides when not hovered over
 defaults write com.apple.dock autohide -bool true
@@ -170,7 +179,6 @@ defaults write com.apple.finder FXDefaultSearchScope SCcf
 
 # Don't write .DS_Stores files
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-
 
 
 #######################################
