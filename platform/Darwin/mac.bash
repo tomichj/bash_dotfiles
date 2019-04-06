@@ -21,7 +21,6 @@ tman () {
   MANWIDTH=160 MANPAGER='col -bx' man $@ | mate
 }
 
-
 # position dock to the right
 dock-right() {
   if [ $(uname) = "Darwin" ]; then
@@ -30,8 +29,6 @@ dock-right() {
   fi
 }
 
-
-alias ios="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
 # alias java6='export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home; export PATH=${JAVA_HOME}/bin:${PATH}'
 # alias java5='export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home; export PATH=${JAVA_HOME}/bin:${PATH}'
 
