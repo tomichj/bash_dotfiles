@@ -12,7 +12,7 @@
   count   = !git shortlog -sn
 
   # clear password for a reset
-  pw = git config --global credential.helper osxkeychain
+  pw = config --global credential.helper osxkeychain
 
   # checks that your local copy of the ref that you’re overwriting
   # is up-to-date before overwriting it
