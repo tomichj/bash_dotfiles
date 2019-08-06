@@ -43,13 +43,14 @@ export BASH=$HOME/.dotfiles
 if [ "$(uname -s)" == "Darwin" ]
 then
 	# Set macOS defaults
-	echo "Setting Mac OS X defaults"
-	$BASH/platform/Darwin/set-defaults.sh
+	#echo "Setting Mac OS X defaults"
+	#$BASH/platform/Darwin/set-defaults.sh
 
 	# Upgrade homebrew
-	echo "› brew update"
-	brew update
-	echo "Execute 'brew upgrade' when you're ready."
+	#echo "› brew update"
+	#brew update
+	#echo "Execute 'brew upgrade' when you're ready."
+  echo "Be sure to setup homebrew."
 fi
 
 # Install software
