@@ -8,9 +8,10 @@ tabSize          = 2
 
 
 include = "{$include,.*}"
+exclude = "{$exclude,.git,.DS_Store}"
 
 
-# excludeDirectories = "tmp"
+# excludeDirectories = ".git"
 
 myExtraExcludes = "log,vendor,tmp"
 excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}" 
